@@ -1,51 +1,60 @@
-// *OBS: Tive alguns problemas na hora de remover o valor da pilha e imprimir.
-
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Exercicio2 {
-
     public static void main(String[] args) {
-
-        Pilha pilha = new Pilha();
+        
+        Stack <Integer> teste = new Stack <Integer>();
         Scanner sc = new Scanner(System.in);
-
-        int menu, valorPilha, topo = 0;
+        
+        int menu, numeroAdicionado = -1;
 
         while (true) {
-            System.out.println("===================");
-            System.out.println("1- Adicionar item");
-            System.out.println("2- Remover item");
-            System.out.println("3- Exibir tamanho");
-            System.out.println("====================");
+
+            System.out.println("=====================");
+            System.out.println("1- Adiciona elementos");
+            System.out.println("2- Remove elementos");
+            System.out.println("3- Mostra os elementos");
+            System.out.println("=====================");
             menu = sc.nextInt();
 
             switch (menu) {
-
-                default:
-                    System.out.println("Selecione alguma opção valida!!!");
+                
+                case 1: 
+                    System.out.println("========================================");
+                    System.out.println("Digite o número para ser adicionado");
+                    System.out.println("========================================");
+                    numeroAdicionado = sc.nextInt();
+                    if (teste.add(numeroAdicionado)) {
+                        System.out.println("========================================");
+                        System.out.println("Número: " +numeroAdicionado+ " adicionado com sucesso!");
+                        System.out.println("========================================");
+                    } else {
+                        System.out.println("========================================");
+                        System.out.println("Erro ao adicionar o valor");
+                        System.out.println("========================================");
+                    }
                     break;
+                
 
-                case 1:
-                    System.out.println("=====================");
-                    System.out.println("Adicione os valores");
-                    System.out.println("=====================");
-                    valorPilha = sc.nextInt();
-                    topo = pilha.push(topo, valorPilha);
-                    break;
-
-                case 2:
-                    topo = pilha.pop(topo);
-                    System.out.println("=====================");
-                    System.out.println("Removido com sucesso");
-                    System.out.println("=====================");
+                case 2: 
+                    if (teste.pop() != null) {
+                        System.out.println("=======================================================");
+                        System.out.println("Número: " +numeroAdicionado+ " removido com sucesso!");
+                        System.out.println("=======================================================");
+                    } else {
+                        System.out.println("=======================================================");
+                        System.out.println("Falha ao remover o valor");
+                        System.out.println("=======================================================");
+                    }
                     break;
 
                 case 3:
-                    System.out.println("=====================");
-                    pilha.imprimir(topo);
-                    System.out.println("=====================");
+                    System.out.println("=====================================");
+                    System.out.println("Número de elementos: " +teste.size());
+                    System.out.println("=====================================");
                     break;
+                }
             }
         }
     }
-}
